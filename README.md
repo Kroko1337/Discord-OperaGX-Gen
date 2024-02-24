@@ -45,6 +45,8 @@ This Python script allows users to generate Discord Nitro gifts using requests, 
 ## Disclaimer
 
 This project is intended for educational purposes only. The use of this script may violate Discord's terms of service, and it could lead to account termination or legal consequences. Use at your own risk.
+
+
 The promotion from Opera GX ends on July 16th, 2024.
 
 ## Contributing
