@@ -3,13 +3,33 @@ import datetime
 import time
 
 
+def send_options():
+    url = 'https://discord.opr.gg/v2/direct-fulfillment'
+    headers = {
+        'authority': 'discord.opr.gg',
+        'method': 'OPTIONS',
+        'scheme': 'https',
+        'accept': '*/*',
+        'accept-encoding': 'gzip, deflate, br',
+        'accept-language': 'de-De;q=0.9,en-US;q=0.8;q=0.7',
+        'Access-Control-Request-Headers': 'authorization',
+        'Access-Control-Request-Method': 'POST',
+        'origin': 'https://www.opera.com',
+        'referer': 'https://www.opera.com/',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'cross-site',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 OPR/106.0.0.0'
+    }
+
+
 def generate_nitro_gift():
     url = 'https://discord.opr.gg/v2/direct-fulfillment'
     headers = {
         'authority': 'discord.opr.gg',
         'accept': '*/*',
         'accept-language': 'de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7',
-        'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI3NjhlOTcxZi0zNzcyLTRmYjMtOTlhNC04OGQ5MDMzYjBkNzEiLCJleHAiOjE3MDkzMDE3NDJ9.tfimKKamOYLzPxevebOtxJn3kZu-FlYK2_jS8dUOQozDf326QIHDN8DVq0qejrfYHdgQZkLHbrSeCdDV31OZgquR03cM0Fp93lBPoJEfdFnbh4BkCCLuHUyddf0EoCLy5uM1HpufIdNWS9IjDseuOl85OMWRocvZXIzMGUukNgwF6d1MZsE-8NThkd8uK5wt0SJdganvVDToPNaMK277hlaZkeFwtrJuKmvrp6M48ECLo-GaT9D9fwLg2N2pf7MZSYwMwKQj1pt4UuTZ1xrm8olIBS-ZhnfsAU7cH0F1ZrxrEnCk8UC0YfZXx96bR0Dlt5rubxFGf5DjXKx2AvlloyoAFKRsxXH71jvmvF9EjlsRj3A12H4x7UMKm42O9JiyI2nhc87jiUXYz6OqUknDwW8czCl5Jdd8nyGA34mtTDGluUhKM14Pcp4whuZ9a-zMiqpM1236_fpN1sG7fzlIT9zxACRkTfVShgf2u0m6IArFa8h1nJ5xG0pUF3-IbuCwUuVSFawCpsizcAU2XuaofMGfKWh2AjZJ1oM5shnz9ftZd5ulHl5XlcdJcOjRACsJCfDM3BRxdk3SJ16sgQtEdqBFA-vKhx6jZRl20RZRiocJd_1pYNHVQtj5zEQojVXxzRMrvRJkaGHBbITpR7GivDL4VPT5wP_YwT0LdGEw3ck',
+        'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI3NjhlOTcxZi0zNzcyLTRmYjMtOTlhNC04OGQ5MDMzYjBkNzEiLCJleHAiOjE3MDkzMjI4NDh9.lw0ASVR4slqyLzlnDArRJ3u943fj5Lwlc8X9DUzyqyrcpzmvsIdrCpRAYEmbUH6AOQWZgiY3b4mcJuyT955Syqxkk_G0G_Jx5iPia5QJjOdzy1VafRQPVIxt4vHlu36LiKY6qOUotfH_HPWKssbkGqHl3Sqc2ojpS_uqx0-j41rVS2rqFYWVnE7DfZGd3kE7YRsWbIGO1T4OO4Gh4P_9TbWdYBs8ykFiK391yqdQUEszIhxha2UBps07jSVEZ8gmeceP5JtCiplrdpdM_RgY3canF0rpU7IFJTK2NEgH_kj1rXCfttoO3_sgZrx_I-A8Ao3mbDQHzJhDjpgnrYMVaMpb8-oHBNNmyIhtZsPkKotcLVXJrMDXYiIisZ__HtlHrSrLOsT7oB5HG_5hVCdsKNNFpp5SffpH1mlwE-_R_zkNf8_ZHsVeqJ2CnyiI20gBcB141Tk1qShuDTCw-V0ITzBChpeeygWtGipdJIomhgCeV1hiGylsXHJd5vGj7MLniBhqWaHxduNjM9R5JLF5KplupvTLd6hV-PDx8c2tYkB96KC7-a03-nVST9AE6oeAZEpSQJdpTovNwXzqT3QuDr4IVtujmk_kX3mhpYFAtSeseT-olW-MAY0FyYB89HW8wo0ykahfGIlKEKMtLuPC5zaXm07jAGosExuIA8wb1V8',
         'content-type': 'application/json',
         'origin': 'https://www.opera.com',
         'referer': 'https://www.opera.com/',
@@ -30,14 +50,19 @@ def generate_nitro_gift():
 
     json_data = response.json()
 
-    token = json_data["token"]
+    if 'token' in json_data:
+        token = json_data["token"]
 
-    gift = f"https://discord.com/billing/partner-promotions/1180231712274387115/{token}"
+        gift = f"https://discord.com/billing/partner-promotions/1180231712274387115/{token}"
 
-    with open(f"{datetime.datetime.now():%Y-%m-%d}.txt", "a") as file:
-        file.write(f"{gift}\n")
+        with open(f"{datetime.datetime.now():%Y-%m-%d}.txt", "a") as file:
+            file.write(f"{gift}\n")
 
-    print(gift)
+        print(gift)
+        send_options()
+    if 'token' not in json_data:
+        if 'message' in json_data:
+            print(json_data['message'])
 
 
 if __name__ == "__main__":
